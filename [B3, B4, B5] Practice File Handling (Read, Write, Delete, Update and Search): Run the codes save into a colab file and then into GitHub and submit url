@@ -1,0 +1,48 @@
+# File handling operations in Python
+
+# 1. Write to a file
+def write_to_file(file_name, text):
+    with open(file_name, 'w') as file:
+        file.write(text)
+    print(f"Text written to {file_name}")
+
+# 2. Read from a file
+def read_from_file(file_name):
+    with open(file_name, 'r') as file:
+        content = file.read()
+    print(f"Content of {file_name}:\n{content}")
+    return content
+
+# 3. Delete a file
+import os
+def delete_file(file_name):
+    if os.path.exists(file_name):
+        os.remove(file_name)
+        print(f"{file_name} has been deleted")
+    else:
+        print(f"{file_name} does not exist")
+
+# 4. Update a file (Append text)
+def update_file(file_name, text):
+    with open(file_name, 'a') as file:
+        file.write(text)
+    print(f"Text appended to {file_name}")
+
+# 5. Search for a word in a file
+def search_in_file(file_name, search_term):
+    with open(file_name, 'r') as file:
+        content = file.read()
+        if search_term in content:
+            print(f"'{search_term}' found in {file_name}")
+        else:
+            print(f"'{search_term}' not found in {file_name}")
+
+# Example Usage:
+file_name = 'example_file.txt'
+
+write_to_file(file_name, "Hello, this is a test file.\nThis is a second line.")
+read_from_file(file_name)
+update_file(file_name, "\nThis is the third line.")
+read_from_file(file_name)
+search_in_file(file_name, "second")
+delete_file(file_name)
